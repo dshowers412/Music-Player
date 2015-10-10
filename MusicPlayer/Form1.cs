@@ -18,9 +18,10 @@ namespace MusicPlayer
         }
         string[] f, p;
 
-        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            axWindowsMediaPlayer1.URL = p[listBox1.SelectedIndex];
+            // Play song that is double clicked.
+            axWindowsMediaPlayer1.URL = p[listView1.SelectedIndices[0]];
         }
 
         private void OpenButton_Click(object sender, EventArgs e)
@@ -28,17 +29,18 @@ namespace MusicPlayer
             OpenFileDialog open = new OpenFileDialog();
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                f = openFileDialog1.SafeFileNames;
-                p = openFileDialog1.FileNames;
-                for (int i = 0; i < f.Length; i++)
+                p = openFileDialog1.FileNames; // Array of full path names to selected files.
+                for (int i = 0; i < p.Length; i++)
                 {
-                    listBox1.Items.Add(f[i]);
+                    // Get music file information.
+                    TagLib.File ff = TagLib.File.Create(p[i]);
+                    ListViewItem fileInfo = new ListViewItem(ff.Tag.Title);
+                    fileInfo.SubItems.Add(ff.Tag.AlbumArtists[0]);
+                    fileInfo.SubItems.Add(ff.Tag.Album);
+                    fileInfo.SubItems.Add(ff.Tag.Genres[0]);
 
-                }
-
-                foreach (string d in open.FileNames)
-                {
-                    listBox1.Items.Add(d);
+                    // Add song information to list.
+                    listView1.Items.Add(fileInfo);
                 }
             }
         }
