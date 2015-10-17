@@ -37,6 +37,7 @@
             this.Artist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Album = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Genre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Filter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,11 +100,22 @@
             // 
             this.Genre.Text = "Genre";
             // 
+            // Filter
+            // 
+            this.Filter.Location = new System.Drawing.Point(119, 250);
+            this.Filter.Name = "Filter";
+            this.Filter.Size = new System.Drawing.Size(104, 31);
+            this.Filter.TabIndex = 4;
+            this.Filter.Text = "Filter";
+            this.Filter.UseVisualStyleBackColor = true;
+            this.Filter.Click += new System.EventHandler(this.Filter_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(421, 289);
+            this.ClientSize = new System.Drawing.Size(419, 289);
+            this.Controls.Add(this.Filter);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.OpenButton);
             this.Controls.Add(this.axWindowsMediaPlayer1);
@@ -124,6 +136,7 @@
         private System.Windows.Forms.ColumnHeader Artist;
         private System.Windows.Forms.ColumnHeader Album;
         private System.Windows.Forms.ColumnHeader Genre;
+        private System.Windows.Forms.Button Filter;
     }
 }
 
